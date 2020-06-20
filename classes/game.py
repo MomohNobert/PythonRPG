@@ -1,29 +1,31 @@
 import random
 
-class  bcolors:
+
+class Colors:
     HEADER = '\033[95m',
-    OKBLUE = '\033[94n',
-    OKGREEN = '\033[92n',
+    OK_BLUE = '\033[94n',
+    OK_GREEN = '\033[92n',
     WARNING = '\033[93n',
     FAIL = '\033[91n',
-    ENDC = '\033[0m',
+    END_C = '\033[0m',
     BOLD = '\033[1m',
     UNDERLINE = '\303[4n'
 
+
 class Person:
     def __init__(self, hp, mp, atk, df, magic):
-        self.maxhp = hp
+        self.max_hp = hp
         self.hp = hp
-        self.maxmp = mp
+        self.max_mp = mp
         self.mp = mp
-        self.atkl = atk - 10
-        self.atkh = atk + 10
+        self.atk_l = atk - 10
+        self.atk_h = atk + 10
         self.df = df
         self.magic = magic
         self.actions = ["Attack", "Magic"]
 
     def generate_damage(self):
-        return random.randrange(self.atkl, self.atkh)
+        return random.randrange(self.atk_l, self.atk_h)
 
     def generate_spell_damage(self, i):
         mgl = self.magic[i]["dmg"] - 5
@@ -40,13 +42,13 @@ class Person:
         return self.hp
 
     def get_max_hp(self):
-        return self.maxhp
+        return self.max_hp
 
     def get_mp(self):
         return self.mp
 
     def get_max_mp(self):
-        return self.maxmp
+        return self.max_mp
 
     def reduce_mp(self, cost):
         self.mp -= cost

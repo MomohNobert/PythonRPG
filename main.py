@@ -1,4 +1,5 @@
-from classes.game import Person, bcolors
+from classes.game import Person, Colors
+
 
 magic = [
     {"name": "Fire", "cost": 10, "dmg": 60},
