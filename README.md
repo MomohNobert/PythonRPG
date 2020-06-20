@@ -7,10 +7,6 @@
 
 <div align="center">
 
-[![Status]]()
-[![GitHub Issues]]
-[![GitHub Pull Requests]]
-[![License]](/LICENSE)
 
 </div>
 
