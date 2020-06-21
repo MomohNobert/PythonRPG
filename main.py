@@ -18,13 +18,17 @@ potion = Item("Potion", "potion", "heals 50hp", 50)
 high_potion = Item("High-Potion", "potion", "heals 100hp", 100)
 super_potion = Item("Super-Potion", "potion", "heals 500hp", 500)
 elixir = Item("Elixir", "elixir", "fully restores HP/MP of one party member", 9999)
-high_elixir = ("High-Elixir", "elixir", "fully restore party's HP/MP", 9999)
+high_elixir = Item("High-Elixir", "elixir", "fully restore party's HP/MP", 9999)
 
 grenade = Item("Grenade", "attack", "deals 500 damage", 500)
 
+# Creating List Variables.
+player_magic = [fire, thunder, blizzard, cure, cura]
+player_items = [potion, high_potion, super_potion, elixir, high_elixir]
+
 # Instantiate People
-player = Person(460, 65, 60, 34, [fire, thunder, blizzard, cure, cura])
-enemy = Person(1200, 65, 45, 25, [])
+player = Person(460, 65, 60, 34, player_magic, player_items)
+enemy = Person(1200, 65, 45, 25, [], [])
 
 running = True
 i = 0
@@ -45,6 +49,9 @@ while running:
         player.choose_magic()
         magic_choice = int(input("Choose magic : ")) - 1
 
+        if magic_choice == -1:
+            continue
+
         spell = player.magic[magic_choice]
         magic_dmg = spell.generate_damage()
 
@@ -62,6 +69,19 @@ while running:
         elif spell.spell_type == "black":
             enemy.take_damage(magic_dmg)
             print(bcolors.OK_BLUE + "\n" + spell.name + " deals", str(magic_dmg), " points of damage" + bcolors.END_C)
+
+    elif index == 2:
+        player.choose_item()
+        item_choice = int(input("Choose item : ")) - 1
+
+        if item_choice == - 1:
+            continue
+
+        item = player.items[item_choice]
+
+        if item.item_type == "potion":
+            player.heal(item.prop)
+            print(bcolors.OK_GREEN + "\n" + item.name + " heals for", str(item.prop), "HP" + bcolors.END_C)
 
     enemy_choice = 1
 
