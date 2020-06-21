@@ -1,15 +1,15 @@
 import random
 
 
-class Colors:
-    HEADER = '\033[95m',
-    OK_BLUE = '\033[94n',
-    OK_GREEN = '\033[92n',
-    WARNING = '\033[93n',
-    FAIL = '\033[91n',
-    END_C = '\033[0m',
-    BOLD = '\033[1m',
-    UNDERLINE = '\303[4n'
+class bcolors:
+    HEADER = '\033[95m'
+    OK_BLUE = '\033[94m'
+    OK_GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    END_C = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\303[4m'
 
 
 class Person:
@@ -61,14 +61,14 @@ class Person:
 
     def choose_action(self):
         i = 1
-        print('Actions.')
+        print(bcolors.OK_BLUE + bcolors.BOLD + "Actions." + bcolors.END_C)
         for item in self.actions:
             print(str(i) + ':', item)
             i += 1
 
     def choose_magic(self):
         i = 1
-        print('Magic.')
+        print(bcolors.OK_BLUE + bcolors.BOLD + "Magic." + bcolors.END_C)
         for spell in self.magic:
-            print(str(i) + ':', spell['name'], "(cost", str(spell['mp']) + ')')
+            print(str(i) + ':', spell['name'], "(cost", str(spell['dmg']) + ')')
             i += 1
