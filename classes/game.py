@@ -73,6 +73,9 @@ class Person:
         i = 1
         print("\n" + bcolors.OK_GREEN + bcolors.BOLD + "Items." + bcolors.END_C)
         for item in self.items:
-            print("    " + str(i) + ".", item.name, ":", item.description, " (x5) ")
+            name = item["item"].name
+            description = item["item"].description
+            quantity = str(item["quantity"])
+            print("    " + str(i) + ".", name, ":", description, " (x" + quantity + ") ")
             i += 1
 

@@ -24,7 +24,13 @@ grenade = Item("Grenade", "attack", "deals 500 damage", 500)
 
 # Creating List Variables.
 player_magic = [fire, thunder, blizzard, cure, cura]
-player_items = [potion, high_potion, super_potion, elixir, high_elixir]
+player_items = [
+    {"item": potion, "quantity": 5},
+    {"item": high_potion, "quantity": 5},
+    {"item": super_potion, "quantity": 5},
+    {"item": elixir, "quantity": 2},
+    {"item": high_elixir, "quantity": 2}
+]
 
 # Instantiate People
 player = Person(460, 65, 60, 34, player_magic, player_items)
@@ -77,11 +83,24 @@ while running:
         if item_choice == - 1:
             continue
 
-        item = player.items[item_choice]
+        item = player.items[item_choice]["item"]
+
+        if player.items[item_choice]["quantity"] == 0:
+            print(bcolors.FAIL + "\n" + "This current item is no longer available." + bcolors.END_C)
+            continue
+
+        player.items[item_choice]["quantity"] -= 1
 
         if item.item_type == "potion":
             player.heal(item.prop)
             print(bcolors.OK_GREEN + "\n" + item.name + " heals for", str(item.prop), "HP" + bcolors.END_C)
+        elif item.item_type == "elixir":
+            player.hp = player.max_hp
+            player.mp = player.max_mp
+            print(bcolors.OK_GREEN + "\n" + item.name + " fully restores HP/MP" + bcolors.END_C)
+        elif item.item_type == "attack":
+            enemy.take_damage(item.prop)
+            print(bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage" + bcolors.END_C)
 
     enemy_choice = 1
 
