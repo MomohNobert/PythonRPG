@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "C:\\Users\\Acer\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
-    "git.ignoreLimitWarning": true,
-    "python.autoComplete.extraPaths": ["./classes"],
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}
