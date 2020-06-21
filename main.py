@@ -26,5 +26,11 @@ while running:
         enemy.take_damage(dmg)
         print("You attacked for {} points of damage. Enemy HP: {}".format(dmg, enemy.get_hp()))
 
+    enemy_choice = 1
+
+    enemy_dmg = enemy.generate_damage()
+    player.take_damage(enemy_dmg)
+    print("You're attacked by the enemy. You take {} points of damage. Your HP: {}".format(enemy_dmg, player.get_hp()))
+
     # running = False
 
