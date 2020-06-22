@@ -3,24 +3,24 @@ from classes.magic import Spell
 from classes.inventory import Item
 
 # Create Black Magic
-fire = Spell("Fire", 10, 150, "black")
-thunder = Spell("Thunder", 15, 175, "black")
-blizzard = Spell("Blizzard", 20, 200, "black")
-meteor = Spell("Meteor", 25, 250, "black")
-quake = Spell("Quake", 30, 300, "black")
+fire = Spell("Fire", 10, 650, "black")
+thunder = Spell("Thunder", 15, 675, "black")
+blizzard = Spell("Blizzard", 20, 700, "black")
+meteor = Spell("Meteor", 25, 800, "black")
+quake = Spell("Quake", 30, 900, "black")
 
 # Create White Magic
-cure = Spell("Cure", 12, 120, "white")
-cura = Spell("Cura", 18, 200, "black")
+cure = Spell("Cure", 12, 520, "white")
+cura = Spell("Cura", 18, 1000, "black")
 
 # Create Some Items.
-potion = Item("Potion", "potion", "heals 50hp", 50)
-high_potion = Item("High-Potion", "potion", "heals 100hp", 100)
-super_potion = Item("Super-Potion", "potion", "heals 500hp", 500)
+potion = Item("Potion", "potion", "heals 50hp", 550)
+high_potion = Item("High-Potion", "potion", "heals 100hp", 750)
+super_potion = Item("Super-Potion", "potion", "heals 500hp", 1000)
 elixir = Item("Elixir", "elixir", "fully restores HP/MP of one party member", 9999)
 high_elixir = Item("High-Elixir", "elixir", "fully restore party's HP/MP", 9999)
 
-grenade = Item("Grenade", "attack", "deals 500 damage", 500)
+grenade = Item("Grenade", "attack", "deals 500 damage", 1500)
 
 # Creating List Variables.
 player_magic = [fire, thunder, blizzard, cure, cura]
@@ -33,10 +33,10 @@ player_items = [
 ]
 
 # Instantiate People
-player1 = Person("Valos:", 2460, 65, 60, 34, player_magic, player_items)
-player2 = Person("Okhai:", 2460, 65, 60, 34, player_magic, player_items)
-player3 = Person("Wiz  :", 2460, 65, 60, 34, player_magic, player_items)
-enemy = Person("BOSS", 4200, 65, 45, 25, [], [])
+player1 = Person("Valos:", 2460, 165, 60, 34, player_magic, player_items)
+player2 = Person("Okhai:", 2460, 165, 60, 34, player_magic, player_items)
+player3 = Person("Wiz  :", 2460, 165, 60, 34, player_magic, player_items)
+enemy = Person("BOSS", 5000, 565, 245, 25, [], [])
 
 players = [player1, player2, player3]
 
@@ -49,7 +49,7 @@ while running:
     print("===============================")
 
     print("\n\n")
-    print("NAME                 HP                                 MP")
+    print("NAME                   HP                                 MP")
     for player in players:
         player.get_stats()
 
@@ -125,7 +125,8 @@ while running:
     print("Enemy HP : ", bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + bcolors.END_C + "\n")
 
     # print("Your HP : ", bcolors.OK_GREEN + str(player.get_hp()) + "/" + str(player.get_max_hp()) + bcolors.END_C)
-    # print("Your MP : ", bcolors.OK_BLUE + str(player.get_mp()) + "/" + str(player.get_max_mp()) + bcolors.END_C + "\n")
+    # print("Your MP : ", bcolors.OK_BLUE + str(player.get_mp()) + "/" + str(player.get_max_mp()) + bcolors.END_C +
+    # "\n")
 
     if enemy.get_hp() == 0:
         print(bcolors.OK_GREEN + "You win!" + bcolors.END_C)
