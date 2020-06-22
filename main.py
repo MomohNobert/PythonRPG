@@ -1,6 +1,7 @@
 from classes.game import Person, bcolors
 from classes.magic import Spell
 from classes.inventory import Item
+import random
 
 # Create Black Magic
 fire = Spell("Fire", 10, 650, "black")
@@ -36,7 +37,7 @@ player_items = [
 player1 = Person("Valos:", 2460, 165, 60, 34, player_magic, player_items)
 player2 = Person("Okhai:", 2460, 165, 60, 34, player_magic, player_items)
 player3 = Person("Wiz  :", 2460, 165, 60, 34, player_magic, player_items)
-enemy = Person("BOSS", 5000, 565, 245, 25, [], [])
+enemy = Person("BOSS", 10000, 565, 245, 25, [], [])
 
 players = [player1, player2, player3]
 
@@ -54,6 +55,8 @@ while running:
         player.get_stats()
 
     print("\n")
+
+    enemy.get_enemy_stats()
 
     for player in players:
         player.choose_action()
@@ -108,25 +111,24 @@ while running:
                 player.heal(item.prop)
                 print(bcolors.OK_GREEN + "\n" + item.name + " heals for", str(item.prop), "HP" + bcolors.END_C)
             elif item.item_type == "elixir":
-                player.hp = player.max_hp
-                player.mp = player.max_mp
+                if item.name == "High-Elixir":
+                    for i in players:
+                        i.hp = player.max_hp
+                        i.mp = player.max_mp
+                else:
+                    player.hp = player.max_hp
+                    player.mp = player.max_mp
                 print(bcolors.OK_GREEN + "\n" + item.name + " fully restores HP/MP" + bcolors.END_C)
             elif item.item_type == "attack":
                 enemy.take_damage(item.prop)
                 print(bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage" + bcolors.END_C)
 
     enemy_choice = 1
+    target = random.randrange(0, 3)
 
     enemy_dmg = enemy.generate_damage()
-    player1.take_damage(enemy_dmg)
-    print("You're attacked by the enemy. You take {} points of damage".format(enemy_dmg))
-
-    print('------------------------------------')
-    print("Enemy HP : ", bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + bcolors.END_C + "\n")
-
-    # print("Your HP : ", bcolors.OK_GREEN + str(player.get_hp()) + "/" + str(player.get_max_hp()) + bcolors.END_C)
-    # print("Your MP : ", bcolors.OK_BLUE + str(player.get_mp()) + "/" + str(player.get_max_mp()) + bcolors.END_C +
-    # "\n")
+    players[target].take_damage(enemy_dmg)
+    print("{} is attacked by the enemy. You take {} points of damage".format(players[target].name, enemy_dmg))
 
     if enemy.get_hp() == 0:
         print(bcolors.OK_GREEN + "You win!" + bcolors.END_C)
