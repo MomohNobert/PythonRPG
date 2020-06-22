@@ -13,6 +13,19 @@ class bcolors:
     UNDERLINE = '\303[4m'
 
 
+# def get_enemy_status(enemies):
+#     for enemy in enemies:
+#         if enemies[enemy].get_hp() == 0:
+#             print(bcolors.OK_GREEN + "You defeated {}!".format(enemies[enemy].name) + bcolors.END_C)
+#             print(enemies[enemy])
+#             del enemies[enemy]
+#
+#         if len(enemies) == 0:
+#             print(bcolors.OK_GREEN + "You've defeated all the enemies! Hurray" + bcolors.END_C)
+#             running = False
+#             break
+
+
 class Person:
     def __init__(self, name, hp, mp, atk, df, magic, items):
         self.name = name
@@ -85,8 +98,9 @@ class Person:
         i = 1
         print("\n" + bcolors.FAIL + bcolors.BOLD + "    Target:" + bcolors.END_C)
         for enemy in enemies:
-            print("        " + str(i) + ".", enemy.name)
-            i += 1
+            if enemy.get_hp() != 0:
+                print("        " + str(i) + ".", enemy.name)
+                i += 1
         choice = int(input("    Choose target : ")) - 1
         return choice
 
@@ -116,7 +130,7 @@ class Person:
         else:
             current_hp = hp_string
 
-        print(bcolors.FAIL + "                        __________________________________________________"
+        print(bcolors.FAIL + "                         __________________________________________________"
               + bcolors.END_C)
         print(bcolors.BOLD + self.name + "      " +
               current_hp + "  " + bcolors.FAIL + "|" + hp_bar + "|" + bcolors.END_C)
